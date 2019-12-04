@@ -8,4 +8,6 @@
 
 在非苹果硬件上安装MacOS的难点在于 Clover的配置。
 
+1. `$sudo efibootmgr`与 `$ sudo efibootmgr -b 00xx -B` 可以查看EFI启动项与删除启动项。
 
+2. `reFind` 可以找到所有EFI启动项.
