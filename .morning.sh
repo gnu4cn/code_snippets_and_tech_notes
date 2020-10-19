@@ -2,6 +2,8 @@
 
 IFS=$(echo -en "\n\b")
 DIR="$HOME"
+VOL=85
+
 WD=$(date -R)
 WD=${WD:0:3}
 
@@ -63,6 +65,5 @@ for song in $(ls .); do
     fi
 done
 
-/usr/bin/mplayer -volume 85 -playlist pl
-
+/usr/bin/mplayer -volume $VOL -playlist pl
 exit 0
