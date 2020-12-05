@@ -1,14 +1,9 @@
-" no vi-compatible
-set autoread
-set nocompatible
-
-" disable folding
-set nofoldenable
-
 " ============================================================================
 " Vundle initialization
 " Avoid modify this section, unless you are very sure of what you are doing
 
+" no vi-compatible
+set nocompatible
 
 " Setting up Vundle - the vim plugin bundler
 let iCanHazVundle=1
@@ -39,8 +34,6 @@ Bundle 'plasticboy/vim-markdown'
 
 " autoformat
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
-let g:instant_markdown_slow=1
 
 " Python and PHP Debugger
 Bundle 'fisadev/vim-debug.vim'
@@ -148,7 +141,6 @@ set shiftwidth=4
 
 " tab length exceptions on some file types
 autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType typescript setlocal shiftwidth=4 tabstop=4 softtabstop=4
@@ -228,10 +220,7 @@ set scrolloff=3
 
 " autocompletion of files and commands behaves like shell
 " (complete only the common part, list the options that match)
-" Wildmenu
-set wildmenu
-set wildmode=longest,list
-
+set wildmode=list:longest
 
 " better backup, swap and undos storage
 set directory=~/.vim/dirs/tmp     " directory to place swap files in
@@ -434,6 +423,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 
 NeoBundle 'zchee/deoplete-jedi'
+NeoBundle 'ekalinin/Dockerfile.vim'
 
 " For deoplete
 NeoBundle 'shougo/deoplete.nvim'
@@ -441,7 +431,6 @@ NeoBundle 'roxma/nvim-yarp'
 NeoBundle 'roxma/vim-hug-neovim-rpc'
 
 NeoBundle 'Quramy/tsuquyomi'
-" NeoBundle 'elzr/vim-json'
 NeoBundle 'Shougo/vimproc.vim', {
     \ 'build' : {
     \     'windows' : 'tools\\update-dll-mingw',
