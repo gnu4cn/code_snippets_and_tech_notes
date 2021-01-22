@@ -1,9 +1,14 @@
+" no vi-compatible
+set autoread
+set nocompatible
+
+" disable folding
+set nofoldenable
+
 " ============================================================================
 " Vundle initialization
 " Avoid modify this section, unless you are very sure of what you are doing
 
-" no vi-compatible
-set nocompatible
 
 " Setting up Vundle - the vim plugin bundler
 let iCanHazVundle=1
@@ -20,6 +25,9 @@ endif
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+Bundle 'godlygeek/tabular'
+Bundle 'plasticboy/vim-markdown'
+
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
@@ -29,14 +37,14 @@ Bundle 'gmarik/vundle'
 
 " Plugins from github repos:
 
-Bundle 'godlygeek/tabular'
-Bundle 'plasticboy/vim-markdown'
-
 " autoformat
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
+filetype plugin on
+let g:instant_markdown_slow=1
 
 " Python and PHP Debugger
-Bundle 'fisadev/vim-debug.vim'
+" Bundle 'fisadev/vim-debug.vim'
 " TypeScript 
 Bundle 'leafgarland/typescript-vim'
 " Better file browser
@@ -72,7 +80,7 @@ Bundle 'Townk/vim-autoclose'
 Bundle 'michaeljsmith/vim-indent-object'
 " Python mode (indentation, doc, refactor, lints, code checking, motion and
 " operators, highlighting, run and ipdb breakpoints)
-Bundle 'klen/python-mode'
+" Bundle 'klen/python-mode'
 " Snippets manager (SnipMate), dependencies, and snippets repo
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
@@ -115,6 +123,10 @@ Bundle 'matchit.zip'
 Bundle 'Wombat'
 " Yank history navigation
 " Bundle 'YankRing.vim'
+" colors for gvim
+if has('gui_running')
+    colorscheme wombat
+endif
 
 " ============================================================================
 " Install plugins the first time vim runs
@@ -130,7 +142,6 @@ endif
 " You can edit them as you wish
 
 " allow plugins by file type (required for plugins!)
-filetype plugin on
 filetype indent on
 
 " tabs and spaces handling
@@ -141,6 +152,8 @@ set shiftwidth=4
 
 " tab length exceptions on some file types
 autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType typescript setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
@@ -209,17 +222,16 @@ else
     colorscheme delek
 endif
 
-" colors for gvim
-if has('gui_running')
-    colorscheme wombat
-endif
 
 " when scrolling, keep cursor 3 lines away from screen border
 set scrolloff=3
 
 " autocompletion of files and commands behaves like shell
 " (complete only the common part, list the options that match)
-set wildmode=list:longest
+" Wildmenu
+set wildmenu
+set wildmode=longest,list
+
 
 " better backup, swap and undos storage
 set directory=~/.vim/dirs/tmp     " directory to place swap files in
@@ -422,7 +434,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 
 NeoBundle 'zchee/deoplete-jedi'
-NeoBundle 'ekalinin/Dockerfile.vim'
 
 " For deoplete
 NeoBundle 'shougo/deoplete.nvim'
@@ -430,6 +441,7 @@ NeoBundle 'roxma/nvim-yarp'
 NeoBundle 'roxma/vim-hug-neovim-rpc'
 
 NeoBundle 'Quramy/tsuquyomi'
+" NeoBundle 'elzr/vim-json'
 NeoBundle 'Shougo/vimproc.vim', {
     \ 'build' : {
     \     'windows' : 'tools\\update-dll-mingw',
@@ -456,3 +468,16 @@ filetype plugin indent on
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
 NeoBundleCheck
+
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
+
+" Initialize plugin system
+call plug#end()
