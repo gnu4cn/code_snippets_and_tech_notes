@@ -117,6 +117,8 @@ Bundle 'lilydjwg/colorizer'
 
 " Search results counter
 Bundle 'IndexedSearch'
+Bundle 'petobens/poet-v'
+
 " XML/HTML tags navigation
 Bundle 'matchit.zip'
 " Gvim colorscheme
@@ -417,6 +419,11 @@ if 0 | endif
 if &compatible
   set nocompatible               " Be iMproved
 endif
+
+" For poet-v
+let g:poetv_executables = ['poetry']
+let g:poetv_auto_activate = 1
+let g:poetv_statusline_symbol = ''
 
 " Required:
 set runtimepath+=~/.vim/bundle/neobundle.vim/
